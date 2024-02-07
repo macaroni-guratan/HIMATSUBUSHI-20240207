@@ -3,8 +3,6 @@ FROM richarvey/nginx-php-fpm
 # FROM php:8.1-fpm
 
 COPY . .
-RUN apt-get update && apt-get install -y \
-    curl
 
 # Image config
 ENV SKIP_COMPOSER 1
