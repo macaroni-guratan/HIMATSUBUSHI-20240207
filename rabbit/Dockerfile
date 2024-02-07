@@ -5,8 +5,7 @@ FROM richarvey/nginx-php-fpm
 COPY . .
 
 # Node.jsとNPMのインストール
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get -y install nodejs
+RUN apk -y install nodejs
 
 # Image config
 ENV SKIP_COMPOSER 1
