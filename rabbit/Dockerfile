@@ -10,7 +10,13 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # 依存関係のインストール
 RUN apt-get update && apt-get install -y \
-    curl
+    curl \
+    zip \
+    unzip \
+    git \
+    libonig-dev \
+    libpq-dev \
+    && docker-php-ext-install pdo_pgsql mbstring
 
 # Composerのインストール
 COPY --from=composer /usr/bin/composer /usr/bin/composer
