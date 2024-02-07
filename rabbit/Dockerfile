@@ -1,6 +1,6 @@
 # richarvey/nginx-php-fpmをベースとする
-# FROM richarvey/nginx-php-fpm
-FROM php:7-fpm
+FROM richarvey/nginx-php-fpm
+# FROM php:7-fpm
 
 COPY . .
 
