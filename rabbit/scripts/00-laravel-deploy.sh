@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
-# echo "Running composer"
-# composer global require hirak/prestissimo
-# composer install --no-dev --working-dir=/var/www/html
-# composer install
+echo "Running composer"
+composer global require hirak/prestissimo
+composer install --no-dev --working-dir=/var/www/html
 
 # yarn install
-# echo "node install"
-# npm install
-
-# echo "srclist"
-# echo ls
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/+sources.list.d/yarn.list
+apt-get update && apt-get install yarn
 
 echo "copy .env..."
 cp /etc/secrets/.env ./
@@ -38,4 +35,4 @@ php artisan optimize;
 php artisan route:list;
 
 yarn run dev;
-php artisan serve --host=0.0.0.0 --port=8080;
+php artisan serve --host=0.0.0.0;
