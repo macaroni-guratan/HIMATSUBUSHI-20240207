@@ -5,9 +5,11 @@ composer global require hirak/prestissimo
 composer install
 
 # yarn install
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/+sources.list.d/yarn.list
-apt-get update && apt-get install yarn
+echo "node install"
+npm install
+
+echo "srclist"
+echo ls
 
 echo "copy .env..."
 cp /etc/secrets/.env ./
