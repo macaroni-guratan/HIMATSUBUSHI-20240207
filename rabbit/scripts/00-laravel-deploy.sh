@@ -31,5 +31,6 @@ php artisan passport:install;
 php artisan optimize;
 php artisan route:list;
 
-yarn run dev;
+yarn run build;
+# yarn run dev;
 php artisan serve --host=0.0.0.0 --port=8080;
