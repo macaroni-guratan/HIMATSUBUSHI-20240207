@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-echo "Running composer"
-composer global require hirak/prestissimo
+# echo "Running composer"
+# composer global require hirak/prestissimo
 # composer install --no-dev --working-dir=/var/www/html
-composer install
+# composer install
 
 # yarn install
-echo "node install"
-npm install
+# echo "node install"
+# npm install
 
-echo "srclist"
-echo ls
+# echo "srclist"
+# echo ls
 
 echo "copy .env..."
 cp /etc/secrets/.env ./
@@ -37,6 +37,4 @@ php artisan passport:install;
 php artisan optimize;
 php artisan route:list;
 
-# yarn install;
-yarn run dev;
-# php artisan serve --host=0.0.0.0
+php artisan serve --host=0.0.0.0 --port=8080
