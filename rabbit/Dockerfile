@@ -4,6 +4,9 @@ FROM richarvey/nginx-php-fpm
 
 COPY . .
 
+RUN apt-get update && apt-get install -y \
+    curl
+
 # Image config
 ENV SKIP_COMPOSER 1
 ENV WEBROOT /var/www/html
