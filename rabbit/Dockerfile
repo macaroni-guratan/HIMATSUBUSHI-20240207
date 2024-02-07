@@ -45,11 +45,6 @@ RUN php artisan config:cache
 RUN echo "Caching routes..."
 RUN php artisan route:cache
 
-RUN php artisan passport:client --password --name=password --provider=users;
-RUN php artisan passport:client --personal --name=sorcial;
-RUN php artisan passport:install;
-RUN php artisan optimize;
-
 CMD ["./scripts/start.sh"]
 
 EXPOSE 8080
