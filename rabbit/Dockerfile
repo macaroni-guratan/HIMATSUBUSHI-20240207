@@ -36,6 +36,29 @@ COPY package*.json ./
 RUN npm install
 RUN npm run build
 
+#ENV
+RUN echo "copy .env..."
+RUN cp /etc/secrets/.env ./
+RUN echo "Caching config..."
+RUN php artisan config:cache
+RUN echo "Caching routes..."
+RUN php artisan route:cache
+
+#DB
+RUN echo "clean database.sqlite file"
+RUN rm ./database/database.sqlite
+RUN echo "create database.sqlite file"
+RUN touch ./database/database.sqlite;
+RUN echo "change op permission database.sqlite file"
+RUN chmod 777 ./database/database.sqlite
+RUN echo "Running migrations..."
+RUN php artisan migrate --seed --force;
+
+RUN php artisan passport:client --password --name=password --provider=users;
+RUN php artisan passport:client --personal --name=sorcial;
+RUN php artisan passport:install;
+RUN php artisan optimize;
+
 CMD ["./scripts/start.sh"]
 
 EXPOSE 8080
