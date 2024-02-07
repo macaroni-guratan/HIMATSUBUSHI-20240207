@@ -35,7 +35,7 @@ RUN apt-get -y install nodejs
 COPY package*.json ./
 RUN npm install
 
-RUN ls
+RUN echo ls
 
 CMD ["./start.sh"]
 
