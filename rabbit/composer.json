@@ -9,9 +9,11 @@
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.3",
         "laravel/framework": "^10.10",
+        "laravel/passport": "^11.10",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
+        "opcodesio/log-viewer": "^3.1",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
