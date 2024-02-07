@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+echo ls -al
+
 echo "Running composer"
 # composer global require hirak/prestissimo
 composer install --no-dev --working-dir=/var/www/html
@@ -30,4 +32,4 @@ php artisan optimize;
 php artisan route:list;
 
 yarn run dev;
-php artisan serve --host=0.0.0.0;
+php artisan serve --host=0.0.0.0 --port=8080;

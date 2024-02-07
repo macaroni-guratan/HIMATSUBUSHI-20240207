@@ -35,8 +35,6 @@ RUN apt-get -y install nodejs
 COPY package*.json ./
 RUN npm install
 
-RUN echo ls
-
 CMD ["./start.sh"]
 
 EXPOSE 8080
