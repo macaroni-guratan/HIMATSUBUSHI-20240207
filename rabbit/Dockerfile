@@ -18,6 +18,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 # Laravelの依存関係をインストール
 WORKDIR /var/www
 COPY . /var/www
+RUN composer update
 RUN composer install --no-dev --working-dir=/var/www/
 
 # Node.jsとNPMのインストール
