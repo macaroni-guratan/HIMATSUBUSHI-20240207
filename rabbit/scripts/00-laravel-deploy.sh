@@ -30,5 +30,6 @@ php artisan passport:install;
 php artisan optimize;
 php artisan route:list;
 
+RUN yarn install;
 yarn run dev;
 # php artisan serve --host=0.0.0.0
