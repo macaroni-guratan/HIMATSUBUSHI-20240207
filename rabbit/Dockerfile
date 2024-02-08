@@ -47,4 +47,5 @@ RUN php artisan route:cache
 
 CMD ["./scripts/start.sh"]
 
-EXPOSE 8080
+# EXPOSE 8080
+EXPOSE 5173
