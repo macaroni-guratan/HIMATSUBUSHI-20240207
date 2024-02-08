@@ -41,7 +41,7 @@ ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
 
-CMD ["./scripts/start.sh"]
+CMD ["/start.sh"]
 
 EXPOSE 8080
 # EXPOSE 5173
