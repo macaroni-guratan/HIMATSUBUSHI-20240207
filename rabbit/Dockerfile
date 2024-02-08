@@ -42,6 +42,8 @@ ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
 
 # Vue.jsの依存関係をインストール
+WORKDIR /var/www
+COPY . /var/www
 COPY package*.json ./
 RUN npm install
 RUN npm run build
