@@ -1,4 +1,5 @@
 FROM php:8.1-fpm
+FROM richarvey/nginx-php-fpm
 
 # Laravel config
 ENV APP_ENV production
