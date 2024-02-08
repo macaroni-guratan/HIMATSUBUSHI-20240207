@@ -11,6 +11,9 @@ php artisan route:cache
 #ENV
 echo "copy .env..."
 cp /etc/secrets/.env ./
+
+echo "copy .conf..."
+cp ./conf/supervisor/supervisor.conf /etc/supervisor/conf.d/
 #DB
 echo "clean database.sqlite file"
 rm ./database/database.sqlite
