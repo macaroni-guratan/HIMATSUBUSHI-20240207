@@ -13,6 +13,8 @@ echo "copy .env..."
 cp /etc/secrets/.env ./
 
 echo "copy .conf..."
+mkdir /etc/supervisor
+mkdir /etc/supervisor/conf.d/
 cp ./conf/supervisor/supervisor.conf /etc/supervisor/conf.d/
 #DB
 echo "clean database.sqlite file"
