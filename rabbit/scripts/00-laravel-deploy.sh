@@ -1,6 +1,3 @@
-yarn install
-npm run build
-
 echo "Running composer"
 composer global require hirak/prestissimo
 composer install --no-dev --working-dir=/var/www/html
@@ -28,6 +25,3 @@ php artisan passport:client --password --name=password --provider=users;
 php artisan passport:client --personal --name=sorcial;
 php artisan passport:install;
 php artisan optimize;
-
-# npm run dev & php artisan serve --host=0.0.0.0 --port=8080;
-php artisan serve --host=0.0.0.0 --port=8080;
