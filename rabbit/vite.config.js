@@ -6,7 +6,7 @@ export default defineConfig({
     server: {
         hmr: {
             // host: "localhost",
-            host: env("APP_URL"),
+            host: process.env.APP_URL,
         },
     },
     plugins: [
