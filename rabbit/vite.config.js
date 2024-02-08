@@ -5,7 +5,8 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
     server: {
         hmr: {
-            host: "localhost",
+            // host: "localhost",
+            host: env("APP_URL"),
         },
     },
     plugins: [
