@@ -1,3 +1,6 @@
+#ENV
+echo "copy .env..."
+cp /etc/secrets/.env ./
 #DB
 echo "clean database.sqlite file"
 rm ./database/database.sqlite
@@ -13,4 +16,4 @@ php artisan passport:client --personal --name=sorcial;
 php artisan passport:install;
 php artisan optimize;
 
-php artisan serve --host=0.0.0.0 --port=8080 & npm run dev;
+npm run dev & artisan serve --host=0.0.0.0 --port=8080;

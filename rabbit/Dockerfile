@@ -36,10 +36,6 @@ COPY package*.json ./
 RUN npm install
 RUN npm run build
 
-#ENV
-RUN echo "copy .env..."
-RUN cp /etc/secrets/.env ./
-
 RUN echo "Caching config..."
 RUN php artisan config:cache
 RUN echo "Caching routes..."
