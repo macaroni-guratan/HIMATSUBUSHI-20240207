@@ -1,5 +1,5 @@
-RUN yarn install
-RUN npm run build
+yarn install
+npm run build
 
 echo "Running composer"
 composer global require hirak/prestissimo
