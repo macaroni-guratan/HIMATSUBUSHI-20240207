@@ -41,11 +41,6 @@ ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
 
-RUN echo "Caching config..."
-RUN php artisan config:cache
-RUN echo "Caching routes..."
-RUN php artisan route:cache
-
 CMD ["./scripts/start.sh"]
 
 EXPOSE 8080
