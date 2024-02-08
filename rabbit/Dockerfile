@@ -37,8 +37,8 @@ RUN npm install
 RUN npm run build
 
 #ENV
-# RUN echo "copy .env..."
-# RUN cp /etc/secrets/.env ./
+RUN echo "copy .env..."
+RUN cp /etc/secrets/.env ./
 
 RUN echo "Caching config..."
 RUN php artisan config:cache
@@ -47,5 +47,5 @@ RUN php artisan route:cache
 
 CMD ["./scripts/start.sh"]
 
-# EXPOSE 8080
-EXPOSE 5173
+EXPOSE 8080
+# EXPOSE 5173
