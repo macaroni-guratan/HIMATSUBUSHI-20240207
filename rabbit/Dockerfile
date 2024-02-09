@@ -29,7 +29,6 @@
 
 
 FROM richarvey/nginx-php-fpm
-FROM node:16-alpine3.15
 
 COPY . .
 
@@ -47,6 +46,8 @@ ENV REAL_IP_HEADER 1
 
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
+
+RUN apk add --update nodejs nodejs-npm
 
 CMD ["/start.sh"]
 

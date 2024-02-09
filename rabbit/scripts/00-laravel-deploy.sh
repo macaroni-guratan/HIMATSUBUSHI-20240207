@@ -11,6 +11,9 @@ php artisan route:cache
 echo "ls..."
 ls -al
 
+npm run build
+mv ./public /var/www/html/public
+
 #ENV
 echo "copy .env..."
 cp /etc/secrets/.env ./
