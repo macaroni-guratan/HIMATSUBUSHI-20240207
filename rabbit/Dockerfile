@@ -27,7 +27,7 @@
 # RUN apt-get -y install nodejs
 
 FROM richarvey/nginx-php-fpm
-# FROM node:21.4.0-alpine
+FROM node:21.4.0-alpine
 
 COPY . .
 
