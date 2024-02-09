@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Socialite;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -12,14 +13,16 @@ class SlackController extends Controller
     private $client_id;
     private $client_secret;
     private $redirect_uri;
+    private $driver;
 
     public function __construct()
 {
     // ログイン用ルートであるため、guest ミドルウェアをかまします
     $this->middleware('guest');
 
-    $this->client_secret = env('SLACK_CLIENT_SECRET');
+    $this->driver = 'slack';
     $this->client_id = env('SLACK_CLIENT_ID');
+    $this->client_secret = env('SLACK_CLIENT_SECRET');
     $this->redirect_uri = env("APP_URL") . 'auth/slack/callback';
 }
 public function redirect()
@@ -41,13 +44,13 @@ public function redirect()
 }
 public function callback()
 {
-    $socialiteUser = Socialite::driver('slack')->stateless()->user();
+    $socialiteUser = Socialite::driver($this->driver)->stateless()->user();
     logger('socialiteUser', [$socialiteUser]);
-    $user = User::where('email',$socialiteUser->getId() . 'github',)->first();
+    $user = User::where('email',$socialiteUser->getId() . $this->driver,)->first();
     if( $user ) {
         $user->update([
             'avatar' => $socialiteUser->avatar,
-            'provider' => 'github',
+            'provider' => 'slack',
             'provider_id' => $socialiteUser->id,
             'access_token' => $socialiteUser->token
         ]);
@@ -55,9 +58,9 @@ public function callback()
         $user = User::create([
             'name' => $socialiteUser->nickname,
             // 'email' => $socialiteUser->getEmail(),
-            'email' => $socialiteUser->getId() . 'github',
+            'email' => $socialiteUser->getId() . $this->driver,
             'avatar' => $socialiteUser->getAvatar(),
-            'provider' =>'github',
+            'provider' =>$this->driver,
             'provider_id' => $socialiteUser->getId(),
             'access_token' => $socialiteUser->token,
             'password' => ''
@@ -68,7 +71,7 @@ public function callback()
     Auth::login($user);
     // $token = $user->createToken('Token Name')->accessToken;
     $token = \Auth::user()->createToken('name')->accessToken;
-    return redirect()->intended(RouteServiceProvider::HOME)
+    return redirect()->intended(RouteServiceProvider::HOME);
 
 
 
@@ -111,6 +114,8 @@ public function callback()
     // Auth::login($user);
     // request()->session()->regenerate();
     // return redirect('/home');
-}
+// }
 
+
+}
 }
