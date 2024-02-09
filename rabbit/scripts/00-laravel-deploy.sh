@@ -1,6 +1,6 @@
-echo "Running composer"
-composer global require hirak/prestissimo
-composer install --no-dev --working-dir=/var/www/html
+# echo "Running composer"
+# composer global require hirak/prestissimo
+# composer install --no-dev --working-dir=/var/www/html
 
 echo "Caching config..."
 php artisan config:cache
@@ -11,13 +11,13 @@ php artisan route:cache
 echo "ls..."
 ls -al
 
-echo "yarn install..."
-# yarn のインストールを行う
-npm -g install yarn
-yarn install
+# echo "yarn install..."
+# # yarn のインストールを行う
+# npm -g install yarn
+# yarn install
 
-echo "build..."
-yarn build
+# echo "build..."
+# yarn build
 
 
 # npm install

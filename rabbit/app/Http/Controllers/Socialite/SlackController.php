@@ -27,8 +27,8 @@ public function redirect()
     $state = csrf_token();
     $nonce = uniqid();
     request()->session()->put('nonce', $nonce);
-
-    $to = "https://slack.com/openid/connect/authorize" .
+    // https://slack.com/oauth/authorize?client_id=6600306677556.6600338585860&scope=identify&redirect_uri=https://rabbit-gratan.onrender.com/auth/slack/callback
+    $to = "https://slack.com/oauth/authorize" .
         "?response_type=code" .
         "&scope=openid,email" .
         "&state={$state}" .
