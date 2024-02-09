@@ -26,10 +26,14 @@
 # RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 # RUN apt-get -y install nodejs
 
-FROM richarvey/nginx-php-fpm
 FROM node:21.4.0-alpine
-
 COPY . .
+RUN npm install
+RUN npm run build
+COPY ./public/build /var/www/html
+
+
+FROM richarvey/nginx-php-fpm
 
 # Laravel config
 ENV APP_ENV production

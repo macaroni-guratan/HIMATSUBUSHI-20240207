@@ -11,8 +11,6 @@ php artisan route:cache
 echo "ls..."
 ls -al
 
-npm install
-
 #ENV
 echo "copy .env..."
 cp /etc/secrets/.env ./
