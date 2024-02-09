@@ -29,6 +29,7 @@
 
 
 FROM richarvey/nginx-php-fpm
+FROM node:16-alpine3.15
 
 COPY . .
 
@@ -46,22 +47,6 @@ ENV REAL_IP_HEADER 1
 
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
-
-# Composerのインストール
-COPY --from=composer /usr/bin/composer /usr/bin/composer
-
-# 依存関係のインストール
-RUN apt-get update && apt-get install -y \
-    curl \
-    zip \
-    unzip \
-    git \
-    libonig-dev \
-    libpq-dev \
-    && docker-php-ext-install pdo_pgsql mbstring
-
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get -y install nodejs
 
 RUN npm run buld
 
