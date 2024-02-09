@@ -50,7 +50,7 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 # RUN apk add --update nodejs nodejs-npm
 
 # 依存関係のインストール
-RUN apk add update && apk add install -y \
+RUN apk add install -y \
     curl \
     zip \
     unzip \
