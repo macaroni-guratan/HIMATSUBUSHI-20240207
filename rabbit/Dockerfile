@@ -47,7 +47,20 @@ ENV REAL_IP_HEADER 1
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-RUN apk add --update nodejs nodejs-npm
+# RUN apk add --update nodejs nodejs-npm
+
+# 依存関係のインストール
+RUN apk add update && apk add install -y \
+    curl \
+    zip \
+    unzip \
+    git \
+    libonig-dev \
+    libpq-dev \
+    && docker-php-ext-install pdo_pgsql mbstring
+
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN apk add -y install nodejs
 
 CMD ["/start.sh"]
 
