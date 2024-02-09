@@ -48,8 +48,6 @@ ENV REAL_IP_HEADER 1
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-RUN npm run build
-
 CMD ["/start.sh"]
 
 
