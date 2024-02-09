@@ -18,7 +18,7 @@ class SlackController extends Controller
     // ログイン用ルートであるため、guest ミドルウェアをかまします
     $this->middleware('guest');
 
-    $this->client_id = env('const.SLACK_CLIENT_ID');
+    $this->client_id = env('SLACK_CLIENT_ID');
     $this->client_secret = env('SLACK_CLIENT_SECRET');
     $this->redirect_uri = env("SLACK_REDIRECT_CALLBACK_URL");
 }
@@ -29,12 +29,12 @@ public function redirect()
     request()->session()->put('nonce', $nonce);
     // https://slack.com/oauth/authorize?client_id=6600306677556.6600338585860&scope=identify&redirect_uri=https://rabbit-gratan.onrender.com/auth/slack/callback
     $to = "https://slack.com/oauth/authorize" .
-        "?response_type=code" .
+        "?client_id={$this->client_id}" .
+        "&redirect_uri={$this->redirect_uri}" .
+        "&response_type=code" .
         "&scope=openid,email" .
         "&state={$state}" .
-        "&nonce={$nonce}" .
-        "&client_id={$this->client_id}" .
-        "&redirect_uri={$this->redirect_uri}";
+        "&nonce={$nonce}" ;
 
     return redirect($to);
 }
