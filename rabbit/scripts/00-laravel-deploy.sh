@@ -11,7 +11,9 @@ php artisan route:cache
 echo "ls..."
 ls -al
 
+npm install
 npm run build
+mkdr
 cp -r  ./public/build /var/www/html/public/
 
 #ENV
