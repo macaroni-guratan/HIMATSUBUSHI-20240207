@@ -33,7 +33,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/auth/slack/redirect', function () {
-    return Socialite::with('slack')->redirect()->getTargetUrl();
+    return redirect(Socialite::with('slack')->redirect()->getTargetUrl());
     // return Socialite::driver('slack')->redirect();
 })->name('auth.slack.redirect');
 
