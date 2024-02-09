@@ -27,6 +27,7 @@
 # RUN apt-get -y install nodejs
 
 FROM node:21.4.0-alpine
+WORKDIR /var/www/
 COPY . .
 RUN npm install
 RUN npm run build
