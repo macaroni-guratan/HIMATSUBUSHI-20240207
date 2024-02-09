@@ -47,17 +47,6 @@ ENV REAL_IP_HEADER 1
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-RUN composer global require hirak/prestissimo
-RUN composer install --no-dev --working-dir=/var/www/html
-
-RUN apk add --update nodejs npm
-
-# yarn のインストールを行う
-RUN npm -g install yarn
-RUN yarn install
-
-RUN yarn build
-
 CMD ["/start.sh"]
 
 
