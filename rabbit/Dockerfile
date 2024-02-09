@@ -3,6 +3,9 @@
 # # Allow composer to run as root
 # ENV COMPOSER_ALLOW_SUPERUSER 1
 
+# # Composerのインストール
+# COPY --from=composer /usr/bin/composer /usr/bin/composer
+
 # # 依存関係のインストール
 # RUN apt-get update && apt-get install -y \
 #     curl \
@@ -13,8 +16,8 @@
 #     libpq-dev \
 #     && docker-php-ext-install pdo_pgsql mbstring
 
-# # Composerのインストール
-# COPY --from=composer /usr/bin/composer /usr/bin/composer
+# RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+# RUN apt-get -y install nodejs
 
 # # Laravelの依存関係をインストール
 # WORKDIR /var/www
@@ -23,18 +26,11 @@
 # RUN composer install --no-dev --working-dir=/var/www/
 
 # # Node.jsとNPMのインストール
-# RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
-# RUN apt-get -y install nodejs
-
-FROM node:21.4.0-alpine
-WORKDIR /var/www/
-COPY . .
-RUN npm install
-RUN npm run build
-COPY ./public/build /var/www/html
 
 
 FROM richarvey/nginx-php-fpm
+
+COPY . .
 
 # Laravel config
 ENV APP_ENV production
@@ -50,6 +46,24 @@ ENV REAL_IP_HEADER 1
 
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
+
+# Composerのインストール
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+# 依存関係のインストール
+RUN apt-get update && apt-get install -y \
+    curl \
+    zip \
+    unzip \
+    git \
+    libonig-dev \
+    libpq-dev \
+    && docker-php-ext-install pdo_pgsql mbstring
+
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt-get -y install nodejs
+
+RUN npm run buld
 
 CMD ["/start.sh"]
 
