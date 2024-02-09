@@ -20,7 +20,7 @@ class SlackController extends Controller
 
     $this->client_id = env('SLACK_CLIENT_ID');
     $this->client_secret = env('SLACK_CLIENT_SECRET');
-    $this->redirect_uri = env("SLACK_REDIRECT_CALLBACK_URL");
+    $this->redirect_uri = env("APP_URL") . 'auth/slack/callback';
 }
 public function redirect()
 {
